@@ -30,6 +30,9 @@
     document.write('<script src="https://alcdn.msftauth.net/browser/2.38.3/js/msal-browser.min.js"><\/script>');
   }
 </script>
+<script>
+(function(){try{var t=localStorage.getItem('checklist-apple-theme');if(t==='dark'){document.documentElement.classList.add('apple-dark');}else if(t==='light'){document.documentElement.classList.add('apple-light');}}catch(e){}})();
+</script>
 <style>
 /* PWA Install Banner */
 .pwa-banner {
@@ -1961,7 +1964,7 @@ body.compact .item-card{padding-top:7px!important;padding-bottom:7px!important}
 .splash-meta{display:flex;justify-content:space-between;align-items:baseline;margin-top:10px;font-size:12px;color:rgba(231,233,236,.55)}
 .splash-status{transition:opacity .16s linear}
 .splash-status.swap{opacity:0}
-.splash-pct{font-family:'DM Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums;color:rgba(231,233,236,.85)}
+.splash-pct{font-family:'SF Mono','SF Pro Text',ui-monospace,monospace;font-variant-numeric:tabular-nums;color:rgba(231,233,236,.85)}
 
 /* ---------- LOGIN ---------- */
 html.fx #loginPage{overflow:hidden}
@@ -2053,7 +2056,7 @@ html.fx .toast.error::after{background:var(--crit)}
    Mantém a lógica existente e altera somente apresentação/UX.
    ============================================================ */
 :root {
-  --apple-font: "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont, system-ui, "Helvetica Neue", Arial, sans-serif;
+  --apple-font: "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   --apple-mono: "SF Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   --apple-bg: #f5f5f7;
   --apple-surface: rgba(255,255,255,.82);
@@ -2085,7 +2088,7 @@ html, body, button, input, textarea, select {
 }
 body, input, textarea, select { font-optical-sizing: auto; }
 h1, h2, h3, h4, h5, h6, .hero, .page-title, .section-title, .topnav-title {
-  font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, system-ui, sans-serif !important;
+  font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif !important;
   letter-spacing: -0.025em;
 }
 body { letter-spacing: -0.006em; }
@@ -2250,6 +2253,148 @@ body, .item-card, .topnav, .modal-sheet, .resume-banner, .section-health-card,
   .topnav { padding-left: 14px !important; padding-right: 14px !important; }
   .item-card { border-radius: 16px !important; }
   .modal-sheet { border-radius: 24px 24px 0 0 !important; }
+}
+</style>
+<style id="apple-final-system-fix">
+/* FINAL SYSTEM PASS — global theme consistency + compositor-friendly motion */
+html, body { min-height: 100%; }
+html.apple-dark, body.apple-dark { color-scheme: dark; }
+html.apple-light, body.apple-light { color-scheme: light; }
+
+/* Theme variables are inherited by every screen, modal and dynamically-created panel. */
+html.apple-dark {
+  --bg-app:#000;
+  --bg-surface:#1c1c1e;
+  --bg-card:#1c1c1e;
+  --bg-card-hover:#2c2c2e;
+  --bg-glass:rgba(28,28,30,.82);
+  --bg-modal:rgba(0,0,0,.72);
+  --bg-input:#2c2c2e;
+  --bg-badge:rgba(255,255,255,.08);
+  --border:rgba(255,255,255,.10);
+  --border-focus:rgba(10,132,255,.75);
+  --border-strong:rgba(255,255,255,.16);
+  --text-primary:#f5f5f7;
+  --text-secondary:#98989d;
+  --text-muted:#8e8e93;
+  --text-placeholder:rgba(245,245,247,.38);
+  --brand:#0a84ff;
+  --brand-dim:rgba(10,132,255,.16);
+  --accent:#ff453a;
+  --apple-blue:#0a84ff;
+  --apple-shadow-sm:0 2px 8px rgba(0,0,0,.30);
+  --apple-shadow-md:0 8px 28px rgba(0,0,0,.38);
+  --apple-shadow-lg:0 20px 60px rgba(0,0,0,.55);
+}
+
+/* Kill hard-coded light surfaces everywhere when dark is active. */
+html.apple-dark body,
+html.apple-dark #app,
+html.apple-dark .printers-screen,
+html.apple-dark .main-scroll,
+html.apple-dark .slides-viewport,
+html.apple-dark .modal-backdrop,
+html.apple-dark .modal-sheet,
+html.apple-dark .login-wrap,
+html.apple-dark #splash { background-color:#000 !important; color:var(--text-primary) !important; }
+
+html.apple-dark .topnav,
+html.apple-dark .progress-bar-wrap,
+html.apple-dark .filter-row,
+html.apple-dark .section-tabs,
+html.apple-dark .bottom-bar,
+html.apple-dark .resume-banner,
+html.apple-dark .item-card,
+html.apple-dark .dash-chart-card,
+html.apple-dark .dash-prog-card,
+html.apple-dark .section-health-card,
+html.apple-dark .history-item,
+html.apple-dark .printer-record,
+html.apple-dark .login-card,
+html.apple-dark .modal-sheet,
+html.apple-dark [role="dialog"],
+html.apple-dark .pwa-banner,
+html.apple-dark .email-history,
+html.apple-dark .settings-panel,
+html.apple-dark .admin-panel { background-color:var(--bg-card) !important; color:var(--text-primary) !important; }
+
+html.apple-dark .topnav { background:rgba(28,28,30,.86) !important; }
+html.apple-dark .modal-sheet { background:rgba(28,28,30,.94) !important; }
+html.apple-dark .login-wrap { background:radial-gradient(circle at 50% 0%,rgba(10,132,255,.14),transparent 45%),#000 !important; }
+html.apple-dark #splash { background:#000 !important; }
+
+html.apple-dark input,
+html.apple-dark textarea,
+html.apple-dark select,
+html.apple-dark .search-bar,
+html.apple-dark .search-input-wrap,
+html.apple-dark .detail-input,
+html.apple-dark .cfg-input,
+html.apple-dark .email-input,
+html.apple-dark .email-textarea,
+html.apple-dark .email-attachment-input,
+html.apple-dark .printer-obs-input,
+html.apple-dark .search-input,
+html.apple-dark .admin-input,
+html.apple-dark .form-input { background:#2c2c2e !important; color:var(--text-primary) !important; border-color:var(--border) !important; }
+
+html.apple-dark button:not(.save-btn):not(.cfg-save-btn):not(.login-btn):not(.pwa-install-btn):not(.resume-btn),
+html.apple-dark .icon-btn,
+html.apple-dark .modal-close,
+html.apple-dark .printers-back-btn,
+html.apple-dark .filter-chip,
+html.apple-dark .tab-btn,
+html.apple-dark .field-chip,
+html.apple-dark .email-pill { color:var(--text-secondary) !important; }
+
+html.apple-dark .filter-chip,
+html.apple-dark .tab-btn,
+html.apple-dark .field-chip,
+html.apple-dark .email-pill { background:rgba(255,255,255,.07) !important; border-color:var(--border) !important; }
+html.apple-dark .filter-chip.active,
+html.apple-dark .tab-btn.active,
+html.apple-dark .field-chip.active { background:rgba(10,132,255,.16) !important; color:#64b5ff !important; border-color:rgba(10,132,255,.28) !important; }
+
+html.apple-dark .modal-backdrop { background:rgba(0,0,0,.68) !important; }
+html.apple-dark .modal-handle { background:rgba(255,255,255,.20) !important; }
+html.apple-dark .progress-track,
+html.apple-dark .dash-prog-track,
+html.apple-dark .sh-bar-track { background:rgba(255,255,255,.09) !important; }
+html.apple-dark .pwa-banner { background:rgba(28,28,30,.94) !important; border-color:var(--border) !important; }
+html.apple-dark .offline-bar { background:rgba(255,159,10,.12) !important; }
+
+/* Text that used to be hard-coded white/black now follows the active theme. */
+html.apple-dark .modal-title,
+html.apple-dark .login-title,
+html.apple-dark .splash-title,
+html.apple-dark .printers-screen-title,
+html.apple-dark .item-label,
+html.apple-dark strong,
+html.apple-dark h1, html.apple-dark h2, html.apple-dark h3,
+html.apple-dark h4, html.apple-dark h5, html.apple-dark h6 { color:var(--text-primary); }
+
+/* Performance: animate only compositor-friendly properties; no layout animation. */
+body, #app { transition:none !important; }
+.item-card, .dash-chart-card, .dash-prog-card, .section-health-card,
+.history-item, .printer-record, .resume-banner { animation:none !important; transition:transform 160ms cubic-bezier(.22,1,.36,1), box-shadow 160ms ease !important; }
+.topnav, .progress-bar-wrap, .filter-row, .section-tabs, .bottom-bar, .modal-sheet { animation:none !important; }
+.item-card:hover, .dash-chart-card:hover, .dash-prog-card:hover, .section-health-card:hover,
+.history-item:hover, .printer-record:hover { transform:translate3d(0,-2px,0) !important; }
+.item-card:active, button:active { transform:translate3d(0,0,0) scale(.985); }
+
+/* Avoid permanent will-change: it consumes GPU memory and can make long lists worse. */
+.item-card:hover, .modal-sheet.open, .icon-btn:hover { will-change:transform; }
+
+/* Keep large lists cheap to paint. */
+.item-card, .history-item, .printer-record { contain:layout paint style; }
+.slides-viewport, .main-scroll, .printers-screen-body { overscroll-behavior:contain; }
+
+/* Smooth scrolling without JS-driven frame loops. */
+.main-scroll, .slides-viewport, .printers-screen-body { scroll-behavior:smooth; }
+
+/* Respect low-power/reduced-motion preferences. */
+@media (prefers-reduced-motion: reduce), (update: slow) {
+  *, *::before, *::after { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
 }
 </style>
 </head>
@@ -5535,7 +5680,9 @@ body.apple-dark [role="dialog"] {
   function applyTheme(theme){
     const dark=theme==='dark';
     document.documentElement.classList.toggle('apple-dark',dark);
+    document.documentElement.classList.toggle('apple-light',!dark);
     document.body.classList.toggle('apple-dark',dark);
+    document.body.classList.toggle('apple-light',!dark);
     const btn=document.getElementById('themeToggle');
     if(btn){
       btn.title=dark?'Modo claro':'Modo escuro';
