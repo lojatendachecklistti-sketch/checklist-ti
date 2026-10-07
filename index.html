@@ -9,6 +9,8 @@
 <meta name="description" content="Sistema corporativo de vistorias TI — Tenda Atacado">
 <meta name="application-name" content="Checklist TI - Tenda">
 <title>Checklist TI - Tenda</title>
+<link rel="preload" href="assets/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/InterDisplay-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="tenda-logo.png" type="image/png">
 <link rel="apple-touch-icon" href="tenda-logo.png">
@@ -34,6 +36,65 @@
 (function(){try{var t=localStorage.getItem('checklist-apple-theme');if(t==='dark'){document.documentElement.classList.add('apple-dark');}else if(t==='light'){document.documentElement.classList.add('apple-light');}}catch(e){}})();
 </script>
 <style>
+/* ------------------------------------------------------------------
+   LOCAL APPLE-LIKE TYPOGRAPHY
+   Inter is a permissively licensed, Apple-like system UI alternative.
+   Bundled locally so Windows/Chrome renders the same font everywhere.
+   ------------------------------------------------------------------ */
+@font-face {
+  font-family: "Checklist Inter";
+  src: url("assets/fonts/Inter-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Checklist Inter";
+  src: url("assets/fonts/Inter-Medium.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Checklist Inter";
+  src: url("assets/fonts/Inter-SemiBold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Checklist Inter";
+  src: url("assets/fonts/Inter-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Checklist Inter Display";
+  src: url("assets/fonts/InterDisplay-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Checklist Inter Display";
+  src: url("assets/fonts/InterDisplay-SemiBold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Checklist Inter Display";
+  src: url("assets/fonts/InterDisplay-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  --apple-font: "Checklist Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --apple-display-font: "Checklist Inter Display", "Checklist Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+}
 /* PWA Install Banner */
 .pwa-banner {
   position: fixed; bottom: 0; left: 0; right: 0;
@@ -2088,7 +2149,7 @@ html, body, button, input, textarea, select {
 }
 body, input, textarea, select { font-optical-sizing: auto; }
 h1, h2, h3, h4, h5, h6, .hero, .page-title, .section-title, .topnav-title {
-  font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif !important;
+  font-family: var(--apple-display-font) !important;
   letter-spacing: -0.025em;
 }
 body { letter-spacing: -0.006em; }
@@ -2396,6 +2457,27 @@ body, #app { transition:none !important; }
 @media (prefers-reduced-motion: reduce), (update: slow) {
   *, *::before, *::after { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
 }
+
+/* Global typography contract: every visible UI surface inherits the same family. */
+html, body, body *, body *::before, body *::after,
+button, input, textarea, select, option, optgroup,
+table, th, td, dialog, [role="dialog"], [role="button"] {
+  font-family: var(--apple-font) !important;
+  font-synthesis: none;
+  font-variant-numeric: proportional-nums;
+}
+
+h1, h2, h3, h4, h5, h6,
+.display, .hero, .title, .screen-title, .page-title,
+.modal-title, .section-title {
+  font-family: var(--apple-display-font) !important;
+  letter-spacing: -0.018em;
+}
+
+code, pre, kbd, samp, .mono, .code, .splash-pct {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+}
+
 </style>
 </head>
 <body>
