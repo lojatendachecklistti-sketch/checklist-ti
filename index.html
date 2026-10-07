@@ -397,7 +397,7 @@ body {
   min-height: 100dvh;
   background: var(--bg-app);
   color: var(--text-primary);
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: var(--apple-font);
   font-size: 14px;
   line-height: 1.5;
   overflow: hidden;
@@ -2053,7 +2053,7 @@ html.fx .toast.error::after{background:var(--crit)}
    Mantém a lógica existente e altera somente apresentação/UX.
    ============================================================ */
 :root {
-  --apple-font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  --apple-font: "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont, system-ui, "Helvetica Neue", Arial, sans-serif;
   --apple-mono: "SF Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   --apple-bg: #f5f5f7;
   --apple-surface: rgba(255,255,255,.82);
@@ -2076,7 +2076,18 @@ html.fx .toast.error::after{background:var(--crit)}
 }
 
 /* Base typography */
-html, body, button, input, textarea, select { font-family: var(--apple-font) !important; }
+html, body, button, input, textarea, select {
+  font-family: var(--apple-font) !important;
+  font-synthesis: none;
+  font-variant-numeric: proportional-nums;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body, input, textarea, select { font-optical-sizing: auto; }
+h1, h2, h3, h4, h5, h6, .hero, .page-title, .section-title, .topnav-title {
+  font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, system-ui, sans-serif !important;
+  letter-spacing: -0.025em;
+}
 body { letter-spacing: -0.006em; }
 button, input, textarea, select { -webkit-font-smoothing: antialiased; }
 body, .item-card, .topnav, .modal-sheet, .resume-banner, .section-health-card,
@@ -2326,6 +2337,14 @@ const APP_MARKUP = `
         </button>
         <button class="icon-btn" id="adminBtn" onclick="openAdminPanel()" title="Administração" aria-label="Editar seções do checklist (administrador)" style="display:none;position:relative;flex-shrink:0">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </button>
+        <button class="icon-btn apple-theme-toggle" id="themeToggle" onclick="toggleAppleTheme()" title="Modo escuro" aria-label="Ativar modo escuro">
+          <svg class="theme-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+          </svg>
+          <svg class="theme-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
         </button>
         <button class="icon-btn" onclick="openSettings()" title="Configurações" aria-label="Abrir configurações">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
@@ -5423,6 +5442,127 @@ window.addEventListener('load',()=>{
     const info=document.querySelector('.brand-info');if(info){const t=document.createElement('div');t.className='visit-timer';info.appendChild(t);
       let st=+localStorage.getItem('ti-visit-start')||0;if(!st||Date.now()-st>864e5){st=Date.now();localStorage.setItem('ti-visit-start',st)}
       const tick=()=>{const m=Math.floor((Date.now()-st)/6e4);t.textContent='Visita: '+Math.floor(m/60)+'h'+String(m%60).padStart(2,'0')};tick();setInterval(tick,3e4)}},400)});
+</script>
+
+<style id="apple-dark-mode">
+/* Apple-style dark mode */
+html.apple-dark,
+body.apple-dark {
+  color-scheme: dark;
+  --bg-app:#000;
+  --bg-surface:rgba(28,28,30,.78);
+  --bg-card:rgba(28,28,30,.82);
+  --bg-card-hover:#2c2c2e;
+  --bg-glass:rgba(28,28,30,.72);
+  --bg-modal:rgba(28,28,30,.92);
+  --bg-input:rgba(44,44,46,.86);
+  --bg-badge:rgba(255,255,255,.08);
+  --border:rgba(255,255,255,.10);
+  --border-focus:rgba(10,132,255,.72);
+  --border-strong:rgba(255,255,255,.16);
+  --text-primary:#f5f5f7;
+  --text-secondary:#98989d;
+  --text-muted:#8e8e93;
+  --text-placeholder:rgba(245,245,247,.38);
+  --brand:#0a84ff;
+  --brand-dim:rgba(10,132,255,.16);
+  --accent:#ff453a;
+  --apple-bg:#000;
+  --apple-surface:rgba(28,28,30,.82);
+  --apple-surface-solid:#1c1c1e;
+  --apple-text:#f5f5f7;
+  --apple-secondary:#98989d;
+  --apple-tertiary:#8e8e93;
+  --apple-separator:rgba(255,255,255,.10);
+  --apple-blue:#0a84ff;
+  --apple-shadow-sm:0 2px 8px rgba(0,0,0,.30),0 1px 2px rgba(0,0,0,.25);
+  --apple-shadow-md:0 8px 28px rgba(0,0,0,.38),0 2px 8px rgba(0,0,0,.28);
+  --apple-shadow-lg:0 20px 60px rgba(0,0,0,.55),0 4px 16px rgba(0,0,0,.35);
+}
+body.apple-dark #app {
+  background:radial-gradient(circle at 50% -15%,rgba(10,132,255,.12),transparent 38%),#000 !important;
+}
+body.apple-dark .topnav {
+  background:rgba(28,28,30,.78) !important;
+  border-bottom-color:rgba(255,255,255,.10) !important;
+  box-shadow:0 1px 0 rgba(255,255,255,.04),0 8px 28px rgba(0,0,0,.18) !important;
+}
+body.apple-dark .search-bar,
+body.apple-dark .search-input-wrap,
+body.apple-dark .detail-input,
+body.apple-dark .cfg-input,
+body.apple-dark .email-input,
+body.apple-dark .email-textarea,
+body.apple-dark .email-attachment-input,
+body.apple-dark .printer-obs-input,
+body.apple-dark .search-input {
+  background:rgba(44,44,46,.86) !important;
+  border-color:rgba(255,255,255,.10) !important;
+  box-shadow:none !important;
+}
+body.apple-dark .login-card,
+body.apple-dark .item-card,
+body.apple-dark .dash-chart-card,
+body.apple-dark .dash-prog-card,
+body.apple-dark .section-health-card,
+body.apple-dark .resume-banner,
+body.apple-dark .history-item,
+body.apple-dark .printer-record {
+  background:rgba(28,28,30,.86) !important;
+  border-color:rgba(255,255,255,.10) !important;
+}
+body.apple-dark .filter-chip,
+body.apple-dark .tab-btn,
+body.apple-dark .field-chip,
+body.apple-dark .email-pill {
+  background:rgba(255,255,255,.07) !important;
+  border-color:rgba(255,255,255,.10) !important;
+}
+body.apple-dark .modal-sheet,
+body.apple-dark [role="dialog"] {
+  color:var(--text-primary);
+}
+.apple-theme-toggle svg { transition:transform .35s cubic-bezier(.22,1,.36,1),opacity .2s ease; }
+.apple-theme-toggle:active { transform:scale(.90) !important; }
+@media (prefers-reduced-motion: reduce) {
+  .apple-theme-toggle svg { transition:none; }
+}
+</style>
+
+<script id="apple-dark-mode-js">
+(function(){
+  const KEY='checklist-apple-theme';
+  function applyTheme(theme){
+    const dark=theme==='dark';
+    document.documentElement.classList.toggle('apple-dark',dark);
+    document.body.classList.toggle('apple-dark',dark);
+    const btn=document.getElementById('themeToggle');
+    if(btn){
+      btn.title=dark?'Modo claro':'Modo escuro';
+      btn.setAttribute('aria-label',dark?'Ativar modo claro':'Ativar modo escuro');
+      const sun=btn.querySelector('.theme-sun'), moon=btn.querySelector('.theme-moon');
+      if(sun) sun.style.display=dark?'none':'block';
+      if(moon) moon.style.display=dark?'block':'none';
+    }
+    const meta=document.getElementById('themeColorMeta');
+    if(meta) meta.setAttribute('content',dark?'#000000':'#f5f5f7');
+  }
+  window.toggleAppleTheme=function(){
+    const next=document.body.classList.contains('apple-dark')?'light':'dark';
+    try{localStorage.setItem(KEY,next);}catch(e){}
+    applyTheme(next);
+  };
+  function init(){
+    let saved=null;
+    try{saved=localStorage.getItem(KEY);}catch(e){}
+    if(saved!=='dark' && saved!=='light'){
+      saved=window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+    }
+    applyTheme(saved);
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init);
+  else init();
+})();
 </script>
 </body>
 </html>
