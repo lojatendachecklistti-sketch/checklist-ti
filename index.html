@@ -13,8 +13,7 @@
 <link rel="icon" href="tenda-logo.png" type="image/png">
 <link rel="apple-touch-icon" href="tenda-logo.png">
 <meta name="msapplication-TileImage" content="tenda-logo.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <!-- MSAL.js — biblioteca oficial da Microsoft para login com conta corporativa (Entra ID).
      Carregamos via jsDelivr (espelho oficial do pacote npm, CDN global muito estável) e,
      se por algum motivo falhar, caímos para os CDNs diretos da Microsoft como reserva. -->
@@ -2047,6 +2046,200 @@ html.fx .toast.error::after{background:var(--crit)}
 #fxBusy:not(.show) .fx-busy-orbit{animation:none}
 .fx-busy-title{font-size:14px;font-weight:600;color:var(--text-primary)}
 .fx-busy-sub{font-size:12px;color:var(--text-muted);margin-top:4px}
+</style>
+<style id="apple-design-system">
+/* ============================================================
+   APPLE-INSPIRED DESIGN SYSTEM — CHECKLIST TI
+   Mantém a lógica existente e altera somente apresentação/UX.
+   ============================================================ */
+:root {
+  --apple-font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  --apple-mono: "SF Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --apple-bg: #f5f5f7;
+  --apple-surface: rgba(255,255,255,.82);
+  --apple-surface-solid: #fff;
+  --apple-text: #1d1d1f;
+  --apple-secondary: #6e6e73;
+  --apple-tertiary: #86868b;
+  --apple-separator: rgba(0,0,0,.075);
+  --apple-blue: #007aff;
+  --apple-radius-sm: 8px;
+  --apple-radius-md: 12px;
+  --apple-radius-lg: 18px;
+  --apple-radius-xl: 24px;
+  --apple-pill: 999px;
+  --apple-ease: cubic-bezier(.22,1,.36,1);
+  --apple-ease-soft: cubic-bezier(.2,.8,.2,1);
+  --apple-shadow-sm: 0 2px 8px rgba(0,0,0,.055),0 1px 2px rgba(0,0,0,.04);
+  --apple-shadow-md: 0 8px 28px rgba(0,0,0,.08),0 2px 8px rgba(0,0,0,.045);
+  --apple-shadow-lg: 0 20px 60px rgba(0,0,0,.14),0 4px 16px rgba(0,0,0,.06);
+}
+
+/* Base typography */
+html, body, button, input, textarea, select { font-family: var(--apple-font) !important; }
+body { letter-spacing: -0.006em; }
+button, input, textarea, select { -webkit-font-smoothing: antialiased; }
+body, .item-card, .topnav, .modal-sheet, .resume-banner, .section-health-card,
+.dash-chart-card, .dash-prog-card, .search-bar, .filter-chip, .tab-btn { transition: background-color 220ms var(--apple-ease-soft), border-color 220ms ease, box-shadow 220ms var(--apple-ease), transform 220ms var(--apple-ease); }
+
+/* Apple-like dark corporate palette */
+:root {
+  --bg-app: #f5f5f7;
+  --bg-surface: rgba(255,255,255,.72);
+  --bg-card: rgba(255,255,255,.82);
+  --bg-card-hover: #fff;
+  --bg-glass: rgba(255,255,255,.68);
+  --bg-modal: rgba(245,245,247,.88);
+  --bg-input: rgba(255,255,255,.9);
+  --bg-badge: rgba(0,0,0,.045);
+  --border: rgba(0,0,0,.075);
+  --border-focus: rgba(0,122,255,.55);
+  --border-strong: rgba(0,0,0,.12);
+  --text-primary: #1d1d1f;
+  --text-secondary: #6e6e73;
+  --text-muted: #86868b;
+  --text-placeholder: rgba(29,29,31,.38);
+  --brand: #007aff;
+  --brand-dim: rgba(0,122,255,.10);
+  --brand-gradient: #007aff;
+  --accent: #ff3b30;
+  --shadow-sm: var(--apple-shadow-sm);
+  --shadow-md: var(--apple-shadow-md);
+  --shadow-lg: var(--apple-shadow-lg);
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 18px;
+  --r-xl: 24px;
+  --r-2xl: 30px;
+  --r-full: 999px;
+  --ease-out: var(--apple-ease);
+  --ease-spring: var(--apple-ease);
+  --dur-fast: 150ms;
+  --dur-mid: 220ms;
+  --dur-slow: 400ms;
+}
+
+/* Main shell */
+#app { background: radial-gradient(circle at 50% -15%, rgba(0,122,255,.055), transparent 38%), var(--bg-app); }
+.topnav {
+  background: rgba(245,245,247,.78) !important;
+  backdrop-filter: saturate(180%) blur(22px) !important;
+  -webkit-backdrop-filter: saturate(180%) blur(22px) !important;
+  border-bottom: 1px solid rgba(0,0,0,.07) !important;
+  box-shadow: 0 1px 0 rgba(255,255,255,.8), 0 8px 28px rgba(0,0,0,.025) !important;
+}
+.brand-logo { filter: none !important; }
+.brand-user, .brand-info, .stat-ticker { color: var(--apple-secondary) !important; }
+
+/* Typography hierarchy */
+.topnav h1, .slide-section-title, .dash-chart-title, .dash-score-num, .printers-screen-title,
+.modal-title, .login-title, .splash-title { letter-spacing: -.028em; }
+.item-label { font-weight: 600 !important; letter-spacing: -.012em; }
+.item-section-tag, .detail-label, .dash-pill-lbl, .dash-prog-sub, .progress-stats,
+.printers-screen-sub, .email-label, .cfg-label { letter-spacing: .005em; }
+.dash-score-num, .dash-prog-pct, .progress-pct { font-variant-numeric: tabular-nums; }
+
+/* Cards */
+.item-card, .dash-chart-card, .dash-prog-card, .section-health-card, .resume-banner,
+.history-item, .printer-record, .login-card {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: var(--apple-shadow-sm) !important;
+  border-radius: var(--r-lg) !important;
+}
+.item-card:hover, .dash-chart-card:hover, .dash-prog-card:hover, .section-health-card:hover,
+.history-item:hover, .printer-record:hover { transform: translateY(-2px); box-shadow: var(--apple-shadow-md) !important; }
+.item-card:active { transform: scale(.995); }
+
+/* Inputs / search */
+.search-bar, .search-input-wrap, .detail-input, .cfg-input, .email-input, .email-textarea,
+.email-attachment-input, .printer-obs-input, .search-input {
+  border: 1px solid var(--border) !important;
+  background: rgba(255,255,255,.78) !important;
+  border-radius: var(--r-md) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.8) !important;
+}
+.search-bar:focus-within, .search-input-wrap:focus-within, .detail-input:focus,
+.cfg-input:focus, .email-input:focus, .email-textarea:focus { border-color: var(--border-focus) !important; box-shadow: 0 0 0 4px rgba(0,122,255,.10) !important; }
+
+/* Chips / segmented controls */
+.filter-chip, .tab-btn, .field-chip, .email-pill, .printer-chip, .greeting-badge {
+  border-radius: var(--apple-pill) !important;
+  border: 1px solid var(--border) !important;
+  background: rgba(255,255,255,.7) !important;
+  color: var(--text-secondary) !important;
+}
+.filter-chip.active, .tab-btn.active, .field-chip.active {
+  background: rgba(0,122,255,.10) !important;
+  border-color: rgba(0,122,255,.22) !important;
+  color: #006fe6 !important;
+  box-shadow: 0 2px 10px rgba(0,122,255,.08) !important;
+}
+
+/* Buttons */
+.save-btn, .cfg-save-btn, .pwa-install-btn, .resume-btn, .login-btn, .printers-open-btn {
+  border: 0 !important;
+  border-radius: var(--apple-pill) !important;
+  background: var(--apple-blue) !important;
+  box-shadow: 0 5px 16px rgba(0,122,255,.18) !important;
+  font-weight: 600 !important;
+  transition: transform 160ms var(--apple-ease), box-shadow 160ms ease, filter 160ms ease !important;
+}
+.save-btn:hover, .cfg-save-btn:hover, .pwa-install-btn:hover, .resume-btn:hover, .login-btn:hover,
+.printers-open-btn:hover { transform: translateY(-1px) scale(1.012) !important; box-shadow: 0 9px 24px rgba(0,122,255,.23) !important; filter: brightness(1.02); }
+.save-btn:active, .cfg-save-btn:active, .pwa-install-btn:active, .resume-btn:active, .login-btn:active,
+.printers-open-btn:active { transform: scale(.965) !important; }
+.icon-btn, .modal-close, .search-clear, .printers-back-btn, .fab-top {
+  border-radius: 50% !important;
+  transition: transform 160ms var(--apple-ease), background 160ms ease !important;
+}
+.icon-btn:hover, .modal-close:hover, .search-clear:hover, .printers-back-btn:hover, .fab-top:hover { transform: scale(1.06); }
+
+/* Status controls */
+.status-btn { border-radius: 12px !important; transition: transform 160ms var(--apple-ease), box-shadow 160ms ease, background 160ms ease !important; }
+.status-btn:hover { transform: scale(1.025) !important; }
+.status-btn:active { transform: scale(.95) !important; }
+
+/* Progress */
+.progress-track, .dash-prog-track, .sh-bar-track { background: rgba(0,0,0,.07) !important; border-radius: var(--apple-pill) !important; overflow: hidden; }
+.progress-fill, .dash-prog-fill, .sh-bar-fill { border-radius: inherit !important; box-shadow: 0 0 12px rgba(0,122,255,.16); }
+
+/* Modals / sheets */
+.modal-backdrop { background: rgba(0,0,0,.28) !important; backdrop-filter: blur(8px) saturate(120%); -webkit-backdrop-filter: blur(8px) saturate(120%); }
+.modal-sheet { background: rgba(255,255,255,.90) !important; backdrop-filter: blur(28px) saturate(180%) !important; -webkit-backdrop-filter: blur(28px) saturate(180%) !important; border: 1px solid rgba(255,255,255,.65) !important; border-radius: 26px !important; box-shadow: var(--apple-shadow-lg) !important; }
+.modal-handle { background: rgba(0,0,0,.18) !important; border-radius: var(--apple-pill) !important; }
+
+/* Login */
+.login-wrap { background: radial-gradient(circle at 50% 0%, rgba(0,122,255,.12), transparent 45%), #f5f5f7 !important; }
+.login-card { border-radius: 28px !important; box-shadow: 0 24px 70px rgba(0,0,0,.12) !important; }
+.login-title { font-size: clamp(28px, 4vw, 40px) !important; font-weight: 700 !important; }
+
+/* Splash */
+#splash { background: #f5f5f7 !important; color: #1d1d1f !important; }
+.splash-stage { animation: appleEnter .65s var(--apple-ease) both; }
+.splash-logo-real { border-radius: 22px !important; box-shadow: var(--apple-shadow-md) !important; }
+
+/* Floating elements */
+.pwa-banner, .offline-bar { backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); }
+.pwa-banner { background: rgba(255,255,255,.88) !important; border-top: 1px solid var(--border) !important; box-shadow: 0 -10px 40px rgba(0,0,0,.08) !important; }
+
+/* Animations */
+@keyframes appleEnter { from { opacity:0; transform: translateY(12px) scale(.97); } to { opacity:1; transform:none; } }
+@keyframes applePage { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform:none; } }
+@keyframes applePress { 0%{transform:scale(1)} 45%{transform:scale(.97)} 100%{transform:scale(1)} }
+.item-card, .dash-chart-card, .dash-prog-card, .section-health-card { animation: applePage .45s var(--apple-ease) both; }
+
+/* Respect accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+/* Responsive Apple-style density */
+@media (max-width: 700px) {
+  .topnav { padding-left: 14px !important; padding-right: 14px !important; }
+  .item-card { border-radius: 16px !important; }
+  .modal-sheet { border-radius: 24px 24px 0 0 !important; }
+}
 </style>
 </head>
 <body>
