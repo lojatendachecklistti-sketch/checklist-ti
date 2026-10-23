@@ -1902,7 +1902,7 @@ body{background:var(--bg-app);font-weight:400;letter-spacing:0;font-variant-nume
 .slides-track{will-change:transform;transition-duration:180ms!important}
 [class*=confetti]{display:none!important}
 .topnav{background:var(--bg-surface);border-bottom:1px solid var(--border-strong)}
-.topnav::after{content:"";position:absolute;left:0;bottom:-1px;height:3px;width:100%;background:linear-gradient(90deg,#1F4E99 0 72%,var(--accent) 72% 100%);opacity:1}
+.topnav::after{content:"";position:absolute;left:0;bottom:-1px;height:3px;width:100%;background:linear-gradient(90deg,#1F4E99 0 72%,#3B82F6 72% 100%);opacity:1}
 .brand-logo{height:34px;max-width:54px;border-radius:5px;box-shadow:none!important}
 .brand-user{font-size:12px;font-weight:500;color:var(--text-secondary);letter-spacing:.2px}
 .save-btn,.cfg-save-btn,.pwa-install-btn,.resume-btn{background:#2A5FAF!important;border-radius:var(--r-sm);font-weight:600;letter-spacing:.2px}
@@ -3555,7 +3555,7 @@ function updateDashboard() {
       const el = document.createElement('div');
       el.className = 'sh-row';
       el.innerHTML = `
-        <span class="sh-label">${sec.icon} ${sec.title}</span>
+        <span class="sh-label">${sec.title}</span>
         <div class="sh-bar-wrap">
           <div class="sh-bar-track">
             <div class="sh-bar-fill" style="width:${pct}%;background:${color}"></div>
