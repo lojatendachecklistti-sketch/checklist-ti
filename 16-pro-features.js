@@ -642,19 +642,9 @@ function openReview(){
       ${a.noEv.length ? ck(P.settings.requireEvidence ? 'bad' : 'warn', `${a.noEv.length} crítico(s) sem foto ou observação`, P.settings.requireEvidence ? 'Obrigatório nas configurações.' : 'Recomendado anexar evidência.') : ck('ok', 'Críticos com evidência')}
       ${a.noAct.length ? ck('warn', `${a.noAct.length} item(ns) sem ação corretiva`, '', '<button type="button" class="pro-mini" data-auto>Criar ações</button>') : ck('ok', 'Ações corretivas em dia')}</div>
       <div class="pro-field"><label for="rvN">Parecer geral</label><textarea id="rvN" class="pro-in" placeholder="Resumo da visita, pontos de atenção, combinados com a loja…">${esc(P.meta.notes)}</textarea></div>
-      <div class="pro-field"><span class="pro-lbl">Localização</span><div style="display:flex;gap:8px;align-items:center"><span style="flex:1;font-size:12px;color:var(--text-secondary)" id="rvG">${esc(geoTxt())}</span><button type="button" class="pro-mini" data-geo>${svg('pin', 12)} Registrar</button></div></div>
-      <div class="pro-sig"><span class="pro-lbl">Técnico (assinatura)</span><input id="sgI" class="pro-in" placeholder="Nome completo do técnico" value="${esc(P.meta.sig.inspetor.nome || ($('#fResp') || {}).value || '')}"><canvas id="cvI" role="img" aria-label="Prévia da assinatura do técnico"></canvas><span class="pro-hint">A assinatura é gerada automaticamente a partir do nome.</span></div>
-      <div class="pro-sig"><span class="pro-lbl">Gerente da loja (assinatura)</span><div class="pro-row2"><input id="sgLn" class="pro-in" placeholder="Nome do gerente" value="${esc(P.meta.sig.loja.nome)}"><input id="sgLc" class="pro-in" placeholder="Cargo (ex.: Gerente)" value="${esc(P.meta.sig.loja.cargo)}"></div><canvas id="cvL" role="img" aria-label="Prévia da assinatura do gerente da loja"></canvas><span class="pro-hint">A assinatura é gerada automaticamente a partir do nome.</span></div>`;
+      <div class="pro-field"><span class="pro-lbl">Localização</span><div style="display:flex;gap:8px;align-items:center"><span style="flex:1;font-size:12px;color:var(--text-secondary)" id="rvG">${esc(geoTxt())}</span><button type="button" class="pro-mini" data-geo>${svg('pin', 12)} Registrar</button></div></div>`;
     const sv = $('[data-save]', s.el); sv.disabled = !!block;
-    const sg = P.meta.sig;
-    const padI = sigText($('#cvI', s.el), (png, ar) => { sg.inspetor.png = png; sg.inspetor.ar = ar; persistDraft(); });
-    const padL = sigText($('#cvL', s.el), (png, ar) => { sg.loja.png = png; sg.loja.ar = ar; persistDraft(); });
-    if (!sg.inspetor.nome) sg.inspetor.nome = $('#sgI', s.el).value;
-    padI.set($('#sgI', s.el).value); padL.set($('#sgLn', s.el).value);
     $('#rvN', s.el).oninput = e => { P.meta.notes = e.target.value; persistDraft(); };
-    $('#sgI', s.el).oninput = e => { sg.inspetor.nome = e.target.value; padI.set(e.target.value); };
-    $('#sgLn', s.el).oninput = e => { sg.loja.nome = e.target.value; padL.set(e.target.value); };
-    $('#sgLc', s.el).oninput = e => { sg.loja.cargo = e.target.value; persistDraft(); };
     $$('[data-go]', s.el).forEach(l => l.onclick = e => { e.preventDefault(); s.close(); goToTab(+l.dataset.go); });
     const au = $('[data-auto]', s.el); if (au) au.onclick = () => { const n = autoActions(); toast(`${n} ação(ões) criada(s).`, 'success'); view(); };
     $('[data-geo]', s.el).onclick = async () => {
@@ -700,7 +690,7 @@ function openMenu(){
   const n = openActions(curLoja()).length, late = openActions(curLoja()).filter(isOverdue).length;
   const tile = (id, ic, t, d, bd) => `<button type="button" class="pro-tile" data-m="${id}">${bd ? `<span class="bd">${bd}</span>` : ''}${svg(ic)}<b>${t}</b><span>${d}</span></button>`;
   const s = sheet({ title:'Ferramentas', html:`<div class="pro-grid">
-    ${tile('review', 'clip', 'Finalizar vistoria', 'Revisão, parecer e assinaturas')}
+    ${tile('review', 'clip', 'Finalizar vistoria', 'Revisão e parecer')}
     ${tile('plan', 'flag', 'Plano de ação', n ? `${n} aberta(s)${late ? ', ' + late + ' atrasada(s)' : ''}` : 'Ações corretivas com prazo', late || '')}
     ${tile('hist', 'history', 'Histórico', 'Vistorias anteriores e evolução')}
     ${tile('cmp', 'bars', 'Comparar', 'Com a última visita da loja')}
@@ -758,17 +748,6 @@ window.ProPdf = {
     if (P.meta.notes.trim()) { head('Parecer Geral'); para(P.meta.notes.trim(), 9); y += 8; }
     const g = P.meta.geo, dur = P.meta.startedAt ? Math.round((Date.now() - P.meta.startedAt) / 6e4) : null;
     if (g || dur != null) { head('Registro da Visita'); if (g) para(`Localização: ${g.lat}, ${g.lng} (precisão ${g.acc} m) · https://maps.google.com/?q=${g.lat},${g.lng}`, 8); if (dur != null) para(`Duração aproximada: ${dur} min`, 8); y += 8; }
-    const sg = P.meta.sig;
-    if (sg.inspetor.png || sg.loja.png || sg.inspetor.nome || sg.loja.nome) {
-      need(120); head('Assinaturas');
-      [[sg.inspetor, 'Técnico', 40], [sg.loja, 'Gerente da loja', W / 2 + 10]].forEach(([s, lab, x]) => {
-        if (s.png) { const w = 190, h = Math.min(60, w / (s.ar || 3)); try { doc.addImage(s.png, 'PNG', x, y, w, h); } catch(e){} }
-        doc.setDrawColor(120, 128, 145); doc.line(x, y + 64, x + 210, y + 64);
-        doc.setFont('helvetica', 'bold'); doc.setFontSize(9); doc.setTextColor(15, 23, 42); doc.text(s.nome || '—', x, y + 76);
-        doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(80, 89, 110); doc.text(lab + (s.cargo ? ' · ' + s.cargo : ''), x, y + 87);
-      });
-      y += 100;
-    }
     return y;
   }
 };

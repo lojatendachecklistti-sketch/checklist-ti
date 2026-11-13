@@ -284,27 +284,16 @@ function getBackendUrl() {
   return (localStorage.getItem(BACKEND_URL_KEY) || document.getElementById('cfgUrl')?.value || DEFAULT_URL || '').trim();
 }
 
-/* Assinaturas da vistoria (técnico + gerente da loja), lidas do módulo Pro */
-function getSignatureInfo() {
-  const sg = (window.Pro && Pro._P && Pro._P.meta && Pro._P.meta.sig) || {};
-  const tec = sg.inspetor || {}, ger = sg.loja || {};
-  const fmt = (s) => s.nome ? `${s.nome}${s.cargo ? ' (' + s.cargo + ')' : ''}${s.png ? ' - assinado' : ' - sem assinatura'}` : '';
-  return { tecnico: fmt(tec), gerente: fmt(ger) };
-}
-
-/* A primeira linha de cada nova vistoria carrega as assinaturas; as demais ficam em branco */
 function buildChecklistRows(payload) {
-  const sig = getSignatureInfo();
-  return (payload.itens || []).map((item, i) => [
+  return (payload.itens || []).map((item) => [
     item.loja, item.data, item.responsavel, item.regional, item.secao,
     item.item, item.status, item.quantidade, item.observacao,
-    item.horario || '', item.score ?? '', item.progresso ?? '', item.salvoEm || '',
-    i === 0 ? sig.tecnico : '', i === 0 ? sig.gerente : ''
+    item.horario || '', item.score ?? '', item.progresso ?? '', item.salvoEm || ''
   ]);
 }
 
 function buildSpreadsheetHeaders() {
-  return ['Loja','Data','Responsável','Regional','Seção','Item','Status','Quantidade','Observação','Horário','Score','Progresso','Salvo em','Assinatura Técnico','Assinatura Gerente da Loja'];
+  return ['Loja','Data','Responsável','Regional','Seção','Item','Status','Quantidade','Observação','Horário','Score','Progresso','Salvo em'];
 }
 
 function buildPrinterRowsForSheet() {

@@ -1,4 +1,4 @@
-const CACHE = 'checklist-ti-v9';
+const CACHE = 'checklist-ti-v10';
 const ASSETS = ['./', './index.html', './manifest.json', './base.css', './components.css', './layout.css', './overlays.css', './screens.css', './tokens.css', './00-runtime.js', './01-utils.js', './02-splash.js', './03-config.js', './04-logo-data.js', './05-printers.js', './06-state.js', './07-render.js', './07b-dashboard.js', './08-modals-export.js', './09-save.js', './10-admin.js', './11-auth-boot.js', './12-history-undo.js', './13-field-tools.js', './14-pwa-enhance.js', './15-feedback.js', './16-pro-features.js', './17-shell.js', './18-flow.js', './19-command-palette.js', './logo-square.jpg', './logo-brand.png', './icon-192.png', './icon-512.png', './inter-latin-opsz-normal.woff2', './dancing-script-600.woff2'];
 
 self.addEventListener('install', e => {
