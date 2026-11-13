@@ -1,0 +1,145 @@
+/* ==========================================================================
+   DESIGN TOKENS — única fonte de verdade para cor, tipografia, espaço,
+   raio, sombra e movimento. Nenhum outro arquivo define valores "soltos".
+   Tema claro é o padrão; o escuro segue o sistema ou a escolha em Configurações.
+   ========================================================================== */
+/* ==========================================================================
+   FONTE — no iPhone, iPad e no Safari do Mac o app usa a própria fonte do sistema (SF Pro).
+   Nos demais navegadores entra a Inter (variável, eixo opsz), hospedada junto do app:
+   visual muito próximo ao da Apple e funciona offline.
+   Inter: SIL Open Font License 1.1 (assets/fonts/OFL.txt).
+   ========================================================================== */
+@font-face {
+  font-family: "Dancing Script";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../assets/fonts/dancing-script-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../assets/fonts/inter-latin-opsz-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  /* Tipografia */
+  --font-sans: "Inter", system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, "Cascadia Mono", Menlo, Consolas, monospace;
+  --fs-display: 28px;  /* valor de destaque (score) */
+  --fs-title: 20px;    /* título de página */
+  --fs-subtitle: 15px; /* subtítulo / título de cartão */
+  --fs-body: 14px;     /* texto padrão */
+  --fs-small: 13px;    /* texto auxiliar */
+  --fs-label: 12px;    /* labels e indicadores */
+  --fs-micro: 11px;    /* informação secundária */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+
+  /* Espaçamento (escala de 4) */
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 20px;
+  --sp-6: 24px; --sp-8: 32px; --sp-10: 40px; --sp-12: 48px;
+
+  /* Raio */
+  --r-xs: 4px; --r-sm: 6px; --r-md: 8px; --r-lg: 10px; --r-2xl: 12px; --r-full: 999px;
+
+  /* Movimento */
+  --dur-fast: 120ms; --dur-base: 180ms; --dur-slow: 220ms;
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --ease-in-out: cubic-bezier(.4, 0, .2, 1);
+
+  /* Layout */
+  --sidebar-w: 248px; --sidebar-w-collapsed: 64px;
+  --topbar-h: 56px; --dock-h: 60px; --content-max: 960px;
+  /* Coluna única: topo, contexto, progresso, filtros, itens e barra de ações usam o mesmo recuo lateral.
+     --sbw é a largura real da barra de rolagem (medida em 17-shell.js; 0 em aparelhos de toque). */
+  --gutter: 24px; --sbw: 0px;
+  --pad-x: max(var(--gutter), calc((100% - var(--content-max)) / 2));
+  --touch: 44px;
+  --z-sticky: 20; --z-sidebar: 40; --z-overlay: 100; --z-screen: 150; --z-modal: 200; --z-toast: 300;
+
+  /* Tema claro */
+  color-scheme: light;
+  --bg-app: #F5F6F8;
+  --bg-surface: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F9FAFB;
+  --bg-input: #FFFFFF;
+  --bg-badge: #EEF0F3;
+  --surface-2: #F0F2F5;
+  --bg-overlay: rgba(21, 23, 25, .46);
+  --sidebar-bg: #151719;           /* preto institucional */
+  --sidebar-bg-hover: #1F2226;
+  --sidebar-active: #282C31;       /* cinza escuro */
+  --sidebar-text: #AEB4BC;
+  --sidebar-text-strong: #F2F4F6;
+  --sidebar-border: rgba(255, 255, 255, .08);
+
+  --border: #E5E7EB;
+  --border-strong: #D2D6DC;
+  --border-focus: #2563EB;
+
+  --text-primary: #17191C;
+  --text-secondary: #5B636D;
+  --text-muted: #737B86;
+  --text-placeholder: #9AA1AB;
+
+  --accent: #2563EB;
+  --accent-dim: rgba(37, 99, 235, .10);
+  --accent-contrast: #FFFFFF;
+  --ok: #168653;   --ok-dim: rgba(22, 134, 83, .11);
+  --warn: #B97A0A; --warn-dim: rgba(217, 154, 22, .15);
+  --crit: #DC4545; --crit-dim: rgba(220, 69, 69, .10);
+  --na: #737B86;   --na-dim: rgba(115, 123, 134, .12);
+
+  --shadow-sm: 0 1px 2px rgba(21, 23, 25, .05);
+  --shadow-md: 0 4px 14px rgba(21, 23, 25, .08);
+  --shadow-lg: 0 12px 32px rgba(21, 23, 25, .16);
+
+  /* Aliases legados (usados por módulos JS que geram HTML inline) */
+  --brand: var(--accent);
+  --brand-dim: var(--accent-dim);
+  --brand-gradient: var(--accent);
+  --brand-glow: var(--accent-dim);
+}
+
+/* iPhone, iPad e Safari no Mac: usa a SF Pro de verdade (fonte do sistema da Apple, com ajuste óptico automático).
+   Em todos os outros navegadores continua a Inter embutida, que é a mais parecida com ela. */
+@supports (font: -apple-system-body) {
+  :root { --font-sans: -apple-system, "SF Pro Text", "Inter", system-ui, "Helvetica Neue", Arial, sans-serif; }
+}
+
+/* Tema escuro: escolha explícita... */
+:root[data-theme="dark"] { color-scheme: dark;
+  --bg-app: #0E0F11; --bg-surface: #151719; --bg-card: #17191C; --bg-card-hover: #1C1F23;
+  --bg-input: #101214; --bg-badge: #23262B; --surface-2: #1F2226; --bg-overlay: rgba(0, 0, 0, .62);
+  --sidebar-bg: #0A0B0C; --sidebar-bg-hover: #16181B; --sidebar-active: #22252A;
+  --border: #25282D; --border-strong: #353A41; --border-focus: #5B8DEF;
+  --text-primary: #ECEEF0; --text-secondary: #A4ABB4; --text-muted: #8A929C; --text-placeholder: #6B727C;
+  --accent: #4F83F0; --accent-dim: rgba(79, 131, 240, .16); --accent-contrast: #0B1220;
+  --ok: #3DBB82; --ok-dim: rgba(61, 187, 130, .14);
+  --warn: #E2A93B; --warn-dim: rgba(226, 169, 59, .15);
+  --crit: #EE6A6A; --crit-dim: rgba(238, 106, 106, .14);
+  --na: #8A929C; --na-dim: rgba(138, 146, 156, .16);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .4); --shadow-md: 0 4px 14px rgba(0, 0, 0, .4); --shadow-lg: 0 12px 32px rgba(0, 0, 0, .55);
+}
+/* ...ou automático (sem escolha) quando o sistema usa tema escuro. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { color-scheme: dark;
+    --bg-app: #0E0F11; --bg-surface: #151719; --bg-card: #17191C; --bg-card-hover: #1C1F23;
+    --bg-input: #101214; --bg-badge: #23262B; --surface-2: #1F2226; --bg-overlay: rgba(0, 0, 0, .62);
+    --sidebar-bg: #0A0B0C; --sidebar-bg-hover: #16181B; --sidebar-active: #22252A;
+    --border: #25282D; --border-strong: #353A41; --border-focus: #5B8DEF;
+    --text-primary: #ECEEF0; --text-secondary: #A4ABB4; --text-muted: #8A929C; --text-placeholder: #6B727C;
+    --accent: #4F83F0; --accent-dim: rgba(79, 131, 240, .16); --accent-contrast: #0B1220;
+    --ok: #3DBB82; --ok-dim: rgba(61, 187, 130, .14);
+    --warn: #E2A93B; --warn-dim: rgba(226, 169, 59, .15);
+    --crit: #EE6A6A; --crit-dim: rgba(238, 106, 106, .14);
+    --na: #8A929C; --na-dim: rgba(138, 146, 156, .16);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, .4); --shadow-md: 0 4px 14px rgba(0, 0, 0, .4); --shadow-lg: 0 12px 32px rgba(0, 0, 0, .55);
+  }
+}

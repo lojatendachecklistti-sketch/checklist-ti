@@ -1,0 +1,35 @@
+/* SOBREPOSIÇÕES — paleta de comandos e janela de atalhos de teclado */
+
+/* ---- Paleta de comandos ---- */
+.cmdk { position: fixed; inset: 0; z-index: calc(var(--z-toast) + 20); display: none; align-items: flex-start; justify-content: center; padding: 12vh var(--sp-4) var(--sp-4); background: var(--bg-overlay); }
+.cmdk.open { display: flex; animation: fade-in var(--dur-fast) both; }
+.cmdk-box { width: 100%; max-width: 620px; max-height: min(520px, 76dvh); display: flex; flex-direction: column; overflow: hidden; background: var(--bg-surface); border: 1px solid var(--border-strong); border-radius: var(--r-2xl); box-shadow: var(--shadow-lg); animation: rise-in var(--dur-base) var(--ease-out) both; }
+.cmdk-head { display: flex; align-items: center; gap: var(--sp-3); padding: 0 var(--sp-4); border-bottom: 1px solid var(--border); }
+.cmdk-head svg { width: 18px; height: 18px; color: var(--text-muted); }
+.cmdk-input { flex: 1; min-width: 0; height: 52px; border: 0; background: transparent; color: var(--text-primary); font-size: var(--fs-subtitle); outline: none; }
+.cmdk-esc { flex-shrink: 0; }
+.cmdk-list { overflow-y: auto; overscroll-behavior: contain; padding: var(--sp-2); }
+.cmdk-group { padding: var(--sp-3) var(--sp-3) var(--sp-1); font-size: var(--fs-micro); font-weight: var(--fw-semibold); letter-spacing: .06em; text-transform: uppercase; color: var(--text-muted); }
+.cmdk-group:first-child { padding-top: var(--sp-2); }
+.cmdk-item { display: flex; align-items: center; gap: var(--sp-3); width: 100%; min-height: 40px; padding: 0 var(--sp-3); border-radius: var(--r-md); text-align: left; font-size: var(--fs-body); }
+.cmdk-item[aria-selected="true"] { background: var(--accent-dim); }
+.ci-ic { display: inline-flex; width: 18px; justify-content: center; color: var(--text-muted); flex-shrink: 0; }
+.ci-ic svg { width: 16px; height: 16px; }
+.ci-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-strong); }
+.ci-dot.st-ok { background: var(--ok); } .ci-dot.st-warn { background: var(--warn); } .ci-dot.st-crit { background: var(--crit); } .ci-dot.st-na { background: var(--na); }
+.ci-label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ci-meta { flex-shrink: 0; max-width: 40%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--fs-label); color: var(--text-muted); }
+.cmdk-item mark { background: transparent; color: var(--accent); font-weight: var(--fw-semibold); }
+.cmdk-empty { padding: var(--sp-8) var(--sp-4); text-align: center; font-size: var(--fs-small); color: var(--text-muted); }
+.cmdk-foot { display: flex; flex-wrap: wrap; gap: var(--sp-2) var(--sp-4); padding: var(--sp-2) var(--sp-4); border-top: 1px solid var(--border); font-size: var(--fs-micro); color: var(--text-muted); }
+.cmdk-foot span { display: inline-flex; align-items: center; gap: 6px; }
+@media (max-width: 639px) { .cmdk { padding-top: var(--sp-4); } .cmdk-foot { display: none; } }
+
+/* ---- Janela de atalhos ---- */
+.modal-sheet:focus-visible { outline: none; }
+.kbd-list { display: flex; flex-direction: column; }
+.kbd-list > div { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4); padding: var(--sp-2) 0; border-top: 1px solid var(--border); font-size: var(--fs-small); }
+.kbd-list > div:first-child { border-top: 0; }
+.kbd-list dt { display: inline-flex; gap: 4px; order: 2; }
+.kbd-list dd { color: var(--text-secondary); }
+.kbd-list kbd { display: inline-flex; align-items: center; justify-content: center; min-width: 24px; height: 24px; padding: 0 6px; border: 1px solid var(--border-strong); border-bottom-width: 2px; border-radius: var(--r-sm); background: var(--bg-surface); color: var(--text-primary); font: var(--fw-medium) 12px/1 var(--font-mono); }
