@@ -12,19 +12,19 @@
 <meta name="application-name" content="Checklist TI - Tenda">
 <title>Checklist TI - Tenda</title>
 <link rel="manifest" href="manifest.json">
-<link rel="icon" href="assets/logo-brand.png" type="image/png">
-<link rel="apple-touch-icon" href="assets/logo-square.jpg">
-<link rel="preload" href="assets/fonts/inter-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="logo-brand.png" type="image/png">
+<link rel="apple-touch-icon" href="logo-square.jpg">
+<link rel="preload" href="inter-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
 <script>
 /* Aplica o tema salvo antes da primeira pintura (evita flash). */
 (function(){try{var t=localStorage.getItem('ti-theme-pref');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
 </script>
-<link rel="stylesheet" href="css/tokens.css">
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/components.css">
-<link rel="stylesheet" href="css/layout.css">
-<link rel="stylesheet" href="css/screens.css">
-<link rel="stylesheet" href="css/overlays.css">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="components.css">
+<link rel="stylesheet" href="layout.css">
+<link rel="stylesheet" href="screens.css">
+<link rel="stylesheet" href="overlays.css">
 <!-- Bibliotecas: MSAL (login Microsoft), jsPDF (PDF) e SheetJS (Excel) -->
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -42,7 +42,7 @@
 <div id="splash" role="status" aria-live="polite" aria-label="Carregando aplicativo">
   <div class="splash-glow" aria-hidden="true"></div>
   <div class="splash-stage">
-    <div class="splash-orbit"><div class="splash-logo splash-logo-real"><img src="assets/logo-brand.png" alt="Tenda Atacado"></div></div>
+    <div class="splash-orbit"><div class="splash-logo splash-logo-real"><img src="logo-brand.png" alt="Tenda Atacado"></div></div>
     <div class="splash-text">
       <div class="splash-title">Checklist TI</div>
       <div class="splash-sub">Sistema de vistorias corporativas</div>
@@ -58,7 +58,7 @@
 <div id="loginPage" class="hidden" role="main">
   <div class="login-split">
     <aside class="login-brand">
-      <div class="login-brand-logo"><img src="assets/logo-brand.png" alt="Tenda Atacado"></div>
+      <div class="login-brand-logo"><img src="logo-brand.png" alt="Tenda Atacado"></div>
       <div class="login-brand-body">
         <h2 class="login-brand-title">Vistorias de TI, do celular ao relatório.</h2>
         <ul class="login-points">
@@ -72,7 +72,7 @@
     <div class="login-panel">
       <div class="login-wrap">
         <div class="login-header">
-          <div class="login-icon login-icon-real"><img src="assets/logo-brand.png" alt="Tenda Atacado"></div>
+          <div class="login-icon login-icon-real"><img src="logo-brand.png" alt="Tenda Atacado"></div>
           <h1 class="login-title">Checklist TI</h1>
           <div class="login-sub">Vistorias de TI — Tenda Atacado</div>
         </div>
@@ -94,7 +94,7 @@
 <div id="app">
   <aside class="sidebar" id="sidebar" aria-label="Navegação principal">
     <div class="sb-head">
-      <div class="brand-logo-wrap"><img class="brand-logo" src="assets/logo-brand.png" alt="Tenda Atacado" width="44" height="30"></div>
+      <div class="brand-logo-wrap"><img class="brand-logo" src="logo-brand.png" alt="Tenda Atacado" width="44" height="30"></div>
       <div class="brand-info">
         <div class="brand-name">Checklist TI</div>
         <div class="brand-user" id="brandUser">Vistorias de TI</div>
@@ -505,7 +505,7 @@
 
 <!-- PWA INSTALL BANNER -->
 <div class="pwa-banner" id="pwaBanner">
-  <div class="pwa-banner-icon"><img src="assets/logo-brand.png" alt=""></div>
+  <div class="pwa-banner-icon"><img src="logo-brand.png" alt=""></div>
   <div class="pwa-banner-text">
     <div class="pwa-banner-title">Instalar Checklist TI</div>
     <div class="pwa-banner-sub">Acesse offline, como aplicativo</div>
@@ -514,26 +514,26 @@
   <button type="button" class="pwa-dismiss-btn" onclick="dismissPWA()" aria-label="Dispensar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
 </div>
 
-<script src="js/00-runtime.js"></script>
-<script src="js/01-utils.js"></script>
-<script src="js/02-splash.js"></script>
-<script src="js/03-config.js"></script>
-<script src="js/04-logo-data.js"></script>
-<script src="js/05-printers.js"></script>
-<script src="js/06-state.js"></script>
-<script src="js/07-render.js"></script>
-<script src="js/07b-dashboard.js"></script>
-<script src="js/08-modals-export.js"></script>
-<script src="js/09-save.js"></script>
-<script src="js/10-admin.js"></script>
-<script src="js/11-auth-boot.js"></script>
-<script src="js/12-history-undo.js"></script>
-<script src="js/13-field-tools.js"></script>
-<script src="js/14-pwa-enhance.js"></script>
-<script src="js/15-feedback.js"></script>
-<script src="js/16-pro-features.js"></script>
-<script src="js/17-shell.js"></script>
-<script src="js/18-flow.js"></script>
-<script src="js/19-command-palette.js"></script>
+<script src="00-runtime.js"></script>
+<script src="01-utils.js"></script>
+<script src="02-splash.js"></script>
+<script src="03-config.js"></script>
+<script src="04-logo-data.js"></script>
+<script src="05-printers.js"></script>
+<script src="06-state.js"></script>
+<script src="07-render.js"></script>
+<script src="07b-dashboard.js"></script>
+<script src="08-modals-export.js"></script>
+<script src="09-save.js"></script>
+<script src="10-admin.js"></script>
+<script src="11-auth-boot.js"></script>
+<script src="12-history-undo.js"></script>
+<script src="13-field-tools.js"></script>
+<script src="14-pwa-enhance.js"></script>
+<script src="15-feedback.js"></script>
+<script src="16-pro-features.js"></script>
+<script src="17-shell.js"></script>
+<script src="18-flow.js"></script>
+<script src="19-command-palette.js"></script>
 </body>
 </html>

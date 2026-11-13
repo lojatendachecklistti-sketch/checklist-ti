@@ -7,21 +7,21 @@
    FONTE — no iPhone, iPad e no Safari do Mac o app usa a própria fonte do sistema (SF Pro).
    Nos demais navegadores entra a Inter (variável, eixo opsz), hospedada junto do app:
    visual muito próximo ao da Apple e funciona offline.
-   Inter: SIL Open Font License 1.1 (assets/fonts/OFL.txt).
+   Inter: SIL Open Font License 1.1 (OFL.txt).
    ========================================================================== */
 @font-face {
   font-family: "Dancing Script";
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url("../assets/fonts/dancing-script-600.woff2") format("woff2");
+  src: url("./dancing-script-600.woff2") format("woff2");
 }
 @font-face {
   font-family: "Inter";
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("../assets/fonts/inter-latin-opsz-normal.woff2") format("woff2");
+  src: url("./inter-latin-opsz-normal.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
