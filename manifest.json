@@ -2,14 +2,14 @@
   "name": "Checklist TI – Visita Loja",
   "short_name": "Checklist TI",
   "description": "Checklist de visita TI para lojas",
-  "start_url": "/index.html",
+  "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#1a56db",
-  "orientation": "portrait",
+  "background_color": "#F5F6F8",
+  "theme_color": "#151719",
+  "orientation": "any",
   "icons": [
-    { "src": "tenda-logo.svg", "sizes": "any", "type": "image/svg+xml" },
-    { "src": "tenda-logo.svg", "sizes": "192x192", "type": "image/svg+xml" },
-    { "src": "tenda-logo.svg", "sizes": "512x512", "type": "image/svg+xml" }
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
   ]
 }
